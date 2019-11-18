@@ -17,8 +17,8 @@ const onButtonClick = () => {
         }
 
     });
-//    instance.get(`http://localhost:3003/`).then((response) => {
-    instance.get(`http://x321.ru:3003/`).then((response) => {
+    instance.get(`http://localhost:3003/`).then((response) => {
+//    instance.get(`http://x321.ru:3003/`).then((response) => {
 
         alert(response.data)
     })
