@@ -5,6 +5,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import TableList from "./components/TableList/TableList";
 import * as axios from "axios";
 import ButtonX from "./components/ButtonX/ButtonX";
+import styles from "./components/ButtonX/ButtonX.module.css";
 
 const onButtonClick = () => {
 
@@ -35,6 +36,16 @@ function App() {
                 caption='Hello, world!'
                 onClick={onButtonClick}
             />
+
+            <Button
+                    variant="outlined"
+                    color="primary"
+                    style={{
+                        textTransform: 'none'            }}
+            >
+                Это тоже кнопка
+            </Button>
+
         </div>
     );
 }
