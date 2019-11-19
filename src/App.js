@@ -1,11 +1,8 @@
 import React from 'react';
 import './App.css';
 import Button from "@material-ui/core/Button";
-import {makeStyles} from '@material-ui/core/styles';
-import TableList from "./components/TableList/TableList";
 import * as axios from "axios";
 import ButtonX from "./components/ButtonX/ButtonX";
-import styles from "./components/ButtonX/ButtonX.module.css";
 
 const onButtonClick = () => {
 
@@ -30,7 +27,7 @@ const onButtonClick = () => {
 
 function App() {
     return (
-        <div className='padding30' >
+        <div className='padding30'>
             "это кнопка"
             <ButtonX
                 caption='Hello, world!'
@@ -38,10 +35,11 @@ function App() {
             />
 
             <Button
-                    variant="outlined"
-                    color="primary"
-                    style={{
-                        textTransform: 'none'            }}
+                variant="outlined"
+                color="primary"
+                style={{
+                    textTransform: 'none'
+                }}
             >
                 Это тоже кнопка
             </Button>
