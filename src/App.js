@@ -3,6 +3,7 @@ import './App.css';
 import Button from "@material-ui/core/Button";
 import * as axios from "axios";
 import ButtonX from "./components/ButtonX/ButtonX";
+import MenuAppBar from './components/Header/Header';
 
 const onButtonClick = () => {
 
@@ -27,6 +28,8 @@ const onButtonClick = () => {
 
 function App() {
     return (
+        <>
+        <MenuAppBar />
         <div className='padding30'>
             "это кнопка"
             <ButtonX
@@ -45,6 +48,7 @@ function App() {
             </Button>
 
         </div>
+            </>
     );
 }
 

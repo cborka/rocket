@@ -7,10 +7,14 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import store from "./redux/store";
 
+//import injectTapEventPlugin from 'react-tap-event-plugin';
+//injectTapEventPlugin();
+
+
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
-            <App />
+                <App/>
         </Provider>
     </BrowserRouter>,
     document.getElementById('root')
