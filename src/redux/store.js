@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import dbTablesReducer from "./dbTablesReduser";
-import thankMiddleware from 'redux-thunk';
+import dbTablesReducer from "./dbTablesReducer";
+import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
 
 let reducers = combineReducers({
@@ -9,6 +9,6 @@ let reducers = combineReducers({
 
 });
 
-let store = createStore(reducers, applyMiddleware(thankMiddleware));
+let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 export default store;
