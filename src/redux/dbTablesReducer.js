@@ -38,7 +38,6 @@ let dbTablesReducer = (state = initialState, action) => {
                     tableInfo: t.t_info
                 })), yo: 3
             };
-
         default:
             return state;
     }
@@ -51,15 +50,19 @@ export const getDbTablesInfoAC = (dbTables) => ({
 
 
 export const getTableListSC = () => {
-
     return (dispatch) => {
         dbTablesApi.getTablesList()
             .then(response => {
-                if (response) { //data.resultCode === 0) {
-                    dispatch(getDbTablesInfoAC(response.data));
+                if (response.data.status === 1) { //data.resultCode === 0) {
+                    dispatch(getDbTablesInfoAC(response.data.data));
+                } else {
+                    alert(response.data.errorMessage)
                 }
-            });
-
+            })
+            .catch(function (error) {
+                    alert(error);
+                }
+            )
     }
 };
 

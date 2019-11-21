@@ -13,12 +13,24 @@ const instance = axios.create({
 export const dbTablesApi = {
     getTablesList() {
         return instance.get(`get_table_list`)
+/*
+            .then(
+            response => {
+                debugger
+                return response.data
+            })
+            .catch(function (error) {
+                debugger
+                console.log(error);
+            })
+*/
 
 //            .then(alert('hey'))
 //            {}).then(
 //        debugger;
 //        (response => response.data));
     },
+
     getTablesList2() {
         console.log('YOYO');
         return 'YOYO'
