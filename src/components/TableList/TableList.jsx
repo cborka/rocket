@@ -30,7 +30,7 @@ const TableList = (props) => {
                         {
                             icon: 'save',
                             tooltip: 'Save User',
-                            // iconProps: {color: 'action'},
+                            iconProps: {color: 'action'},
                             onClick: (event, rowData) => {
 
                                 alert('yo, ' + rowData.name);
@@ -39,7 +39,8 @@ const TableList = (props) => {
                         {
                             icon: 'delete',
                             tooltip: 'Delete User',
-                            iconProps: {color: 'secondary'},
+                            isFreeAction: true,
+                            iconProps: {color: 'action'},
                             onClick: (event, rowData) => {
                                 alert("You want to delete " + rowData.name)}
                         }
@@ -67,8 +68,10 @@ const TableList = (props) => {
                         )
                     }}
                     options={{
-                        filtering: true,
-                        grouping: true
+                        filtering: false,
+                        grouping: false,
+                        padding: 'dense',
+                        maxBodyHeight: 600
                     }}
                     localization={{
                         body: {
