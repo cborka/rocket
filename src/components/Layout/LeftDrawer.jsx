@@ -13,19 +13,17 @@ const useStyles = makeStyles(theme => ({
 
 const LeftDrawer = (props) => {
     const classes = useStyles();
+
     const Hey2 = () => {
-//        alert('hey hey')
-// LeftDrawer.open = 'true'
-        debugger
         props.isLeftDrawerVisibleAC(false)
     };
-    debugger
+
     return (
         <Drawer
-            className = {classes.root}
+            className={classes.root}
             variant='temporary'
-//           open = 'false'
-            open = {props.isLeftDrawerVisible}
+            //           open = 'false'
+            open={props.isLeftDrawerVisible}
             onClick={Hey2}
         >
             Hey

@@ -6,29 +6,28 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 
-const useStyles = makeStyles({
-    root: {
- //       width: 500,
-        background:'navy',
-        color: 'white'
-    },
+const useStyles = makeStyles(theme => {
+    return ({
+        root: {
+            //background: theme.palette.background.paper,
+//            background: theme.palette.primary[500],
+            color: theme.palette.secondary[700],
+        }
+    })
 });
-
 const Footer = (props) => {
     const classes = useStyles();
 
     return (
-        <div>
             <BottomNavigation
-                value='sss'
-                 showLabels
+                value='1'
+                showLabels
                 className={classes.root}
             >
-                <BottomNavigationAction label="Recents" icon={<RestoreIcon />} className={classes.root}/>
-                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+                <BottomNavigationAction label="Recents" icon={<RestoreIcon/>} className={classes.root}/>
+                {/*<BottomNavigationAction label="Favorites" icon={<FavoriteIcon/>} className={classes.root}/>*/}
+                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon/>} className={classes.root}/>
             </BottomNavigation>
-        </div>
     )
 };
 

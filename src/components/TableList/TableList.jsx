@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {getTableListSC} from "../../redux/dbTablesReducer";
 import MaterialTable from 'material-table'
+import ruMaterialTableLocalization from "../db/MaterialTableLocalizationRu";
 
 
 const TableList = (props) => {
@@ -9,10 +10,28 @@ const TableList = (props) => {
     if (props.yo === 1)
         props.getTableListSC();
 
+    // Get info about columns
+    const getColumnsInfo = () => {
+        let cols = [];
+        for (let col in props.dbTables[0]) {
+            cols.push({title: col, field: col})
+        }
+        return cols;
+    };
+
+    const getTablesData = () => {
+         return props.dbTables;
+    };
+
+    const getTitle = () => {
+         return 'Список таблиц Базы Данных';
+    };
+
+
     return (
         <div>
-            TableList {props.yo}
-{/*
+ {/*           TableList {props.yo}
+
             {
                 props.dbTables.map((val) => {
                         return (
@@ -29,7 +48,7 @@ const TableList = (props) => {
                     actions={[
                         {
                             icon: 'save',
-                            tooltip: 'Save User',
+                            tooltip: 'Сохранить',
                             iconProps: {color: 'action'},
                             onClick: (event, rowData) => {
 
@@ -38,7 +57,7 @@ const TableList = (props) => {
                         },
                         {
                             icon: 'delete',
-                            tooltip: 'Delete User',
+                            tooltip: 'Удалить',
                             isFreeAction: true,
                             iconProps: {color: 'action'},
                             onClick: (event, rowData) => {
@@ -47,60 +66,21 @@ const TableList = (props) => {
 
                     ]}
 
-                    title="Material Table Demo Title"
-                    columns={[
-                        {title: 'Id', field: 'id'},
-                        {title: 'Name', field: 'name'},
-                        {title: 'Г.Р.', field: 'birthYear', type: 'numeric',  render: rowData => (rowData.birthYear + " год")},
-                        {title: 'BirthCity', field: 'birthCity', lookup: {34: 'Томск', 63: 'Москва', 11: 'Новосибирск'}}
-                    ]}
+                    title={getTitle()}
+                    columns={getColumnsInfo()}
+                    data={getTablesData()}
 
-                    data={[
-                        {id: 1, name: 'Bor', birthYear: 1987, birthCity: 63},
-                        {id: 2, name: 'Bob', birthYear: 1977, birthCity: 34},
-                        {id: 3, name: 'Brian', birthYear: 1999, birthCity: 63},
-                        {id: 4, name: 'Benji', birthYear: 1966, birthCity: 34},
-                        {id: 7, name: 'Иванко', birthYear: 1988, birthCity: 11}
-                    ]}
-                    detailPanel={rowData => {
-                        return (
-                            <div>detailPanel: {rowData.name}</div>
-                        )
-                    }}
-                    options={{
+                     options={{
                         filtering: false,
                         grouping: false,
+                        search: false,
                         padding: 'dense',
                         maxBodyHeight: 600
                     }}
-                    localization={{
-                        body: {
-                            emptyDataSourceMessage: 'Нет данных'
-                        },
-                        toolbar: {
-                            searchTooltip: 'Поиск'
-                        },
-                        pagination: {
-                            labelRowsSelect: 'строк',
-                            labelDisplayedRows: ' {from}-{to} показано {count}',
-                            firstTooltip: 'В начало',
-                            previousTooltip: 'Назад',
-                            nextTooltip: 'Вперёд',
-                            lastTooltip: 'В конец'
-                        },
-                        header: {
-                            actions: 'Действия'
-                        }
-                    }}
-
-
+                    localization={ruMaterialTableLocalization()}
                 />
-
             </div>
-
-
         </div>
-
     )
 };
 

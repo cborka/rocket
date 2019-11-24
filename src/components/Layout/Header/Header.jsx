@@ -8,9 +8,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import {cyan, deepPurple} from "@material-ui/core/colors";
 import {connect} from "react-redux";
-import {isLeftDrawerVisibleAC} from "../../redux/appCommonReducer";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import {isLeftDrawerVisibleAC} from "../../../redux/appCommonReducer";
+import MainMenu from "./MainMenu/MainMenu";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,6 +20,8 @@ const useStyles = makeStyles(theme => ({
     },
     menuButton: {
         marginRight: theme.spacing(2),
+        color: theme.palette.secondary[500]
+
     },
     title: {
         flexGrow: 1,
@@ -29,6 +30,9 @@ const useStyles = makeStyles(theme => ({
 //        height: 30
 //        background: 'orange'
 //        backgroundColor: theme.palette.secondary
+        background: theme.palette.background.paper,
+        color: theme.palette.primary[500],
+//        color: theme.palette.text.secondary,
     }
 }));
 
@@ -47,34 +51,23 @@ const Header = (props) => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" className={classes.back}>
+             <AppBar elevation={1} position="static" className={classes.back}>
                 <Toolbar className={classes.back} disableGutters={false} variant='dense'>
 
                     <IconButton
                         edge="start"
                         className={classes.menuButton}
-                        color="inherit"
+
                         aria-label="menu"
                         onClick={Hey}
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Tabs className={classes.back}
-                          value='one'
-                        //                      onChange={HeyYou}
-                           className={classes.back}
-                    >
-                        <Tab label="Item One" onClick={() => {
-                            alert('HeyYou 111')
-                        }}/>
-                        <Tab label="Item Two"/>
-                        <Tab className={classes.back} label="Item Three"/>
-                    </Tabs>
-
 
                     <Typography variant="h6" className={classes.title}>
                         Ракета
                     </Typography>
+                    <MainMenu />
                 </Toolbar>
 
             </AppBar>
