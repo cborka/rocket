@@ -10,11 +10,13 @@ import {cyan, deepPurple} from "@material-ui/core/colors";
 import {connect} from "react-redux";
 import {isLeftDrawerVisibleAC} from "../../../redux/appCommonReducer";
 import MainMenu from "./MainMenu/MainMenu";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 2,
         padding: 0,
+        paddingBottom: 0,
 
 //        background: cyan[100]
     },
@@ -51,13 +53,11 @@ const Header = (props) => {
 
     return (
         <div className={classes.root}>
-             <AppBar elevation={1} position="static" className={classes.back}>
+             <AppBar elevation={0} position="static" className={classes.back}>
                 <Toolbar className={classes.back} disableGutters={false} variant='dense'>
-
                     <IconButton
                         edge="start"
                         className={classes.menuButton}
-
                         aria-label="menu"
                         onClick={Hey}
                     >
@@ -67,9 +67,9 @@ const Header = (props) => {
                     <Typography variant="h6" className={classes.title}>
                         Ракета
                     </Typography>
-                    <MainMenu />
+                    <MainMenu color = 'textPrimary' variant="body2" />
                 </Toolbar>
-
+                 <Divider />
             </AppBar>
 
         </div>

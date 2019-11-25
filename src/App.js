@@ -27,20 +27,29 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import LeftDrawer from "./components/Layout/LeftDrawer";
 import Drawer from "@material-ui/core/Drawer";
 import Paper from "@material-ui/core/Paper";
+import MainMenu from "./components/Layout/Header/MainMenu/MainMenu";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import {Route} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     root: {
 //        color: teal[900],
         background: grey[50],
-        padding: 15
+        padding: 0,
+        paddingLeft: 5,
+        paddingRight: 5,
+
     },
     list: {
-        width: 250,
+        width: 2500,
     },
     cont: {
         padding: 0,
-        paddingTop: 20,
-        paddingBottom: 20
+        paddingLeft: 15,
+        paddingRight: 15,
+//        paddingTop: 20,
+//        paddingBottom: 20
 //        height: 250,
     },
 
@@ -56,7 +65,7 @@ const theme = createMuiTheme({
         tonalOffset: 0.2,
     },
     boxShadow: 'none',
-//    shadows: ["none"],
+    shadows: ["none"],
 
 //    appBarShadow: 'none'
 
@@ -72,17 +81,23 @@ function App() {
     const classes = useStyles();
     return (
         <ThemeProvider theme={theme}>
-            <Container maxWidth="lg" className={classes.root}>
+            <Container maxWidth="false" className={classes.root}>
+
+{/*                <MainMenu color = 'textPrimary' variant="body2" />*/}
                 <Header theme={theme}/>
                 <LeftDrawer/>
 
-                <Container className={classes.cont}>
-                    <TableList />
+                <Container  maxWidth="false" className={classes.cont}>
+                    <Route path='/TableList' render={() => <TableList  />}/>
+{/*                    <Route path='/' component={Header}/>*/}
+xxx
+                    {/*<TableList />*/}
+                    <TableList  />
                 </Container>
 
-                <Paper elevation={1} className={classes.cont}>
-                    <Footer/>
-                </Paper>
+
+                <Footer/>
+
             </Container>
         </ThemeProvider>
     );
