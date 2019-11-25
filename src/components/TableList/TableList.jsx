@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {dbTablesAddRawAC, getTableListSC} from "../../redux/dbTablesReducer";
+import {dbTablesAddRawAC, dbTablesDeleteRawAC, dbTablesUpdateRawAC, getTableListSC} from "../../redux/dbTablesReducer";
 import MaterialTable from 'material-table'
 import ruMaterialTableLocalization from "../db/MaterialTableLocalizationRu";
 
@@ -87,20 +87,20 @@ const TableList = (props) => {
                             }),
                         onRowUpdate: (newData, oldData) =>
                             new Promise((resolve, reject) => {
-                                setTimeout(() => {
-                                    {
-                                        /* const data = this.state.data;
-                                        const index = data.indexOf(oldData);
-                                        data[index] = newData;
-                                        this.setState({ data }, () => resolve()); */
-                                    }
-                                    resolve();
-                                }, 1000);
+
+                                const index = oldData.tableId;
+                                props.dbTablesUpdateRawAC(newData);
+                                /* const data = this.state.data;
+                               const index = data.indexOf(oldData);
+                               data[index] = newData;
+                               this.setState({ data }, () => resolve()); */
+                                resolve();
                             }),
                         onRowDelete: oldData =>
                             new Promise((resolve, reject) => {
                                 setTimeout(() => {
                                     {
+                                        props.dbTablesDeleteRawAC(oldData);
                                         /* let data = this.state.data;
                                         const index = data.indexOf(oldData);
                                         data.splice(index, 1);
@@ -122,6 +122,6 @@ const mapStateToProps = (state) => ({
     columns: state.dbTables.columns
 });
 
-export default connect(mapStateToProps, {getTableListSC, dbTablesAddRawAC})(TableList);
+export default connect(mapStateToProps, {getTableListSC, dbTablesAddRawAC, dbTablesUpdateRawAC, dbTablesDeleteRawAC})(TableList);
 //export default connect ({}, {getTableListSC})(TableList);
 
