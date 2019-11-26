@@ -11,6 +11,10 @@ const DB_TABLES_ADD_RAW = 'DB_TABLES_ADD_RAW';
 const DB_TABLES_UPDATE_RAW = 'DB_TABLES_UPDATE_RAW';
 const DB_TABLES_DELETE_RAW = 'DB_TABLES_DELETE_RAW';
 
+const GET_DB_TABLE_INFO = 'GET_DB_TABLE_INFO';
+const GET_DB_TABLE_FIELDS = 'GET_DB_TABLE_FIELDS';
+
+
 let initialState = {
     yo: 1,
     columns: [
@@ -33,7 +37,37 @@ let initialState = {
             tableLabel: "Поля таблиц",
             tableInfo: "DB Fields"
         }
+    ],
+
+    // Здесь массив таблиц, которые могут быть одновременно показаны на экране,
+    // например, это документ
+    // Далее в виде значений идут описания полей,
+    //   они всё равно потом заменяться на реальные значения реальных таблиц из базы данных
+    dbTablesArray: [
+        {
+            tableInfo: {
+                tableId: 1,
+                tableName: "Table name in DB",
+                tableLabel: "Название таблицы",
+                tableInfo: "Info about table"
+            },
+            tableColumns: [{
+                title: 'Заголовк поля/колонки таблицы БД',
+                field: 'Field name in db table',
+                type: "oneOf(['string', 'boolean', 'numeric', 'date', 'datetime', 'time', 'currency'])",
+                editable: "oneOf(['always', 'onUpdate', 'onAdd', 'never'])",
+                initialEditValue: 'Default initial value',
+                lookup: {34: 'Выбор', 63: 'значения', 77: 'из списка'},
+                hidden: false,
+                sorting: true,
+
+
+            }],
+            keyColumnNumbers: [1,2,3],
+            tableData: [{}]
+        }
     ]
+
 };
 
 let dbTablesReducer = (state = initialState, action) => {
@@ -63,11 +97,26 @@ let dbTablesReducer = (state = initialState, action) => {
                     return t;
                 })
             };
-       case DB_TABLES_DELETE_RAW:
+        case DB_TABLES_DELETE_RAW:
             return {
                 ...state,
                 dbTables: state.dbTables.filter((t) => (t.tableId !== action.deletedRaw.tableId))
             };
+/*
+
+        case GET_DB_TABLE_FIELDS:
+            return {
+                ...state,
+                dbTables: action.dbTables.map((t) => ({
+                    tableId: t.table_rf,
+                    tableName: t.table_name,
+                    tableLabel: t.t_label,
+                    tableInfo: t.t_info
+                })), yo: 3
+            };
+
+*/
+
         default:
             return state;
     }
@@ -109,6 +158,42 @@ export const getTableListSC = () => {
             )
     }
 };
+
+export const dbTablesDeleteRawSC = (deletedRaw) => {
+    return (dispatch) => {
+        setTimeout(() => {
+            alert('111');
+            //dispatch(dbTablesDeleteRawAC(deletedRaw));
+        }, 2000);
+    }
+};
+
+// ==============  Универсальный табличный компонент ==================
+
+export const getDbTableFieldsAC = (tableNo, tableColumns) => ({
+    type: GET_DB_TABLE_FIELDS
+    ,tableNo, tableColumns
+});
+
+export const getDbTableFieldsSC = (tableName, tableNo) => {
+    return (dispatch) => {
+        dbTablesApi.getDbTableFields(tableName)
+            .then(response => {
+                debugger
+                if (response.data.resultCode === 0) {
+                    dispatch(getDbTableFieldsAC(tableNo, response.data));
+                } else {
+                    alert(response.data.errorMessage)
+                }
+            })
+            .catch(function (error) {
+                    alert(error);
+                }
+            )
+    }
+};
+
+
 
 
 export default dbTablesReducer;

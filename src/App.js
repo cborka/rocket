@@ -31,6 +31,7 @@ import MainMenu from "./components/Layout/Header/MainMenu/MainMenu";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import {Route} from "react-router-dom";
+import DbTable from "./components/DbTable/DbTable";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -92,7 +93,7 @@ function App() {
 {/*                    <Route path='/' component={Header}/>*/}
 xxx
                     {/*<TableList />*/}
-                    <TableList  />
+                    <DbTable />
                 </Container>
 
 

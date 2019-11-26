@@ -31,6 +31,10 @@ export const dbTablesApi = {
 //        (response => response.data));
     },
 
+    getDbTableFields(tableName) {
+        return instance.get(`db/get_table_fields/`+tableName)
+    },
+
     getTablesList2() {
         console.log('YOYO');
         return 'YOYO'
