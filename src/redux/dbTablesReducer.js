@@ -5,6 +5,7 @@
 
 
 import {dbTablesApi} from "../api/api";
+import {convertColumnsDefBackToFront} from "../api/libSpaceRocket";
 
 const GET_DB_TABLES_LIST = 'GET_DB_TABLES_LIST';
 const DB_TABLES_ADD_RAW = 'DB_TABLES_ADD_RAW';
@@ -63,7 +64,7 @@ let initialState = {
 
 
             }],
-            keyColumnNumbers: [1,2,3],
+            keyColumnNumbers: [1, 2, 3],
             tableData: [{}]
         }
     ]
@@ -102,20 +103,19 @@ let dbTablesReducer = (state = initialState, action) => {
                 ...state,
                 dbTables: state.dbTables.filter((t) => (t.tableId !== action.deletedRaw.tableId))
             };
-/*
 
         case GET_DB_TABLE_FIELDS:
+           debugger
             return {
                 ...state,
-                dbTables: action.dbTables.map((t) => ({
-                    tableId: t.table_rf,
-                    tableName: t.table_name,
-                    tableLabel: t.t_label,
-                    tableInfo: t.t_info
-                })), yo: 3
+                dbTablesArray: state.dbTablesArray.map((a, index) => {
+                    debugger
+                    if (index !== action.tableNo)
+                        return a;
+                    return {...a, tableColumns: action.tableColumns}
+                }), yo: 3
             };
 
-*/
 
         default:
             return state;
@@ -170,18 +170,17 @@ export const dbTablesDeleteRawSC = (deletedRaw) => {
 
 // ==============  Универсальный табличный компонент ==================
 
-export const getDbTableFieldsAC = (tableNo, tableColumns) => ({
+export const getDbTableFieldsAC = (tableColumns, tableNo) => ({
     type: GET_DB_TABLE_FIELDS
-    ,tableNo, tableColumns
+    , tableColumns, tableNo
 });
 
-export const getDbTableFieldsSC = (tableName, tableNo) => {
+export const getDbTableFieldsSC = (tableName, tableNo = 0) => {
     return (dispatch) => {
         dbTablesApi.getDbTableFields(tableName)
             .then(response => {
-                debugger
                 if (response.data.resultCode === 0) {
-                    dispatch(getDbTableFieldsAC(tableNo, response.data));
+                    dispatch(getDbTableFieldsAC(convertColumnsDefBackToFront(response.data.data), tableNo));
                 } else {
                     alert(response.data.errorMessage)
                 }
@@ -192,8 +191,6 @@ export const getDbTableFieldsSC = (tableName, tableNo) => {
             )
     }
 };
-
-
 
 
 export default dbTablesReducer;

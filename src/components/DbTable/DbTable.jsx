@@ -8,13 +8,19 @@ import {getDbTableFieldsSC} from "../../redux/dbTablesReducer";
 
 const DbTable = (props) => {
 
-    props.getDbTableFieldsSC('table_s', 1);
+    if (props.yo === 1)
+       props.getDbTableFieldsSC('table_s', 0);
 
-    return <div>xxx</div>;
+
+//    props.getDbTableFieldsSC('table_s', 0);
+    debugger
+    return <div>{props.state.dbTables.yo}</div>;
 };
 
 const mapStateToProps = (state) => ({
-    yo: state.dbTables.yo
+    yo: state.dbTables.yo,
+    state: state,
+//    columns: state.dbTables.dbTablesArray[0].tableColumns
 });
 
 export default connect(mapStateToProps, {
