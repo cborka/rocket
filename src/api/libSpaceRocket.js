@@ -22,7 +22,7 @@ export const convertColumnsDefBackToFront = (backColumnsDef) => {
                 'title': c.f_label,
                 'type': frontType(c.f_type_name),
                 'initialEditValue': c.f_default,
-                'editable': true
+//                'editable': true
 
 
             }

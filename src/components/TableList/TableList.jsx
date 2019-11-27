@@ -8,7 +8,7 @@ import {
     getTableListSC
 } from "../../redux/dbTablesReducer";
 import MaterialTable from 'material-table'
-import ruMaterialTableLocalization from "../db/MaterialTableLocalizationRu";
+import ruMaterialTableLocalization from "../db/ruMaterialTableLocalization";
 
 
 const TableList = (props) => {
