@@ -3,7 +3,8 @@ import * as axios from "axios";
 
 const instance = axios.create({
 //    withCredentials: true,
-    baseURL: `http://localhost:3003/`,
+//    baseURL: `http://localhost:3003/`,
+    baseURL: `http://x321.ru:3003/`,
     headers: {
 //        'API-KEY': 'c66c6192-39fb-4214-895d-b0ba5142f839'
     }
