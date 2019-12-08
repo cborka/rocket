@@ -1,37 +1,17 @@
 import React from "react";
 import "./App.css";
-import Button from "@material-ui/core/Button";
 import * as axios from "axios";
-import ButtonX from "./components/ButtonX/ButtonX";
 import Header from "./components/Layout/Header/Header";
-import TableList from "./components/TableList/TableList"
 import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
 import Footer from "./components/Layout/Footer";
 import {makeStyles} from "@material-ui/core/styles";
-import {
-    blue,
-    cyan,
-    deepOrange,
-    deepPurple,
-    grey,
-    indigo,
-    orange,
-    pink,
-    purple,
-    red,
-    teal
-} from "@material-ui/core/colors";
+import {deepOrange, deepPurple, grey} from "@material-ui/core/colors";
 import {ThemeProvider} from "@material-ui/styles"
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import LeftDrawer from "./components/Layout/LeftDrawer";
-import Drawer from "@material-ui/core/Drawer";
-import Paper from "@material-ui/core/Paper";
-import MainMenu from "./components/Layout/Header/MainMenu/MainMenu";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import {Route} from "react-router-dom";
-import DbTable from "./components/DbTable/DbTable";
+import About from "./components/Layout/About";
+import TableList from "./components/TableList/TableList";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -89,11 +69,14 @@ function App() {
                 <LeftDrawer/>
 
                 <Container  maxWidth="false" className={classes.cont}>
+                    {/*<Route path='/' component={About}/>*/}
+                    <Route path='/About' component={About}/>
                     <Route path='/TableList' render={() => <TableList  />}/>
+
 {/*                    <Route path='/' component={Header}/>*/}
-xxx
+
                     {/*<TableList />*/}
-                    <DbTable />
+                   {/* <DbTable />*/}
                 </Container>
 
 

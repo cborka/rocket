@@ -41,7 +41,7 @@ let initialState = {
     ],
 
     // Здесь массив таблиц, которые могут быть одновременно показаны на экране,
-    // например, это документ
+    // например, если это документ состоящий из нескольких таблиц
     // Далее в виде значений идут описания полей,
     //   они всё равно потом заменяться на реальные значения реальных таблиц из базы данных
     dbTablesArray: [
@@ -143,9 +143,11 @@ export const dbTablesDeleteRawAC = (deletedRaw) => ({
 });
 
 export const getTableListSC = () => {
+    debugger
     return (dispatch) => {
         dbTablesApi.getTablesList()
             .then(response => {
+                debugger
                 if (response.data.status === 1) { //data.resultCode === 0) {
                     dispatch(getDbTablesInfoAC(response.data.data));
                 } else {
@@ -153,6 +155,7 @@ export const getTableListSC = () => {
                 }
             })
             .catch(function (error) {
+                debugger
                     alert(error);
                 }
             )
@@ -176,6 +179,7 @@ export const getDbTableFieldsAC = (tableColumns, tableNo) => ({
 });
 
 export const getDbTableFieldsSC = (tableName, tableNo = 0) => {
+    debugger
     return (dispatch) => {
         dbTablesApi.getDbTableFields(tableName)
             .then(response => {

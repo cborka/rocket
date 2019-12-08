@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {getTableListSC} from "../../redux/dbTablesReducer";
 import MaterialTable from 'material-table'
 
-
+// Здесь просто первая проба, нигде не используется, не стал удалять пока, потом удалю
 const TableTest = (props) => {
 
     if (props.yo === 1)

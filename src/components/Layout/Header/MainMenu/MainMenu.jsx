@@ -44,7 +44,7 @@ const MainMenu = (props) => {
             <Link href="#" onClick={preventDefault} {...props} >
                 План
             </Link>
-            <Link href="#" onClick={preventDefault} {...props} >
+            <Link href="/About" {...props} >
                 О программе
             </Link>
 
