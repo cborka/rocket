@@ -10,9 +10,10 @@ import store from "./redux/store";
 //import injectTapEventPlugin from 'react-tap-event-plugin';
 //injectTapEventPlugin();
 
+debugger
 
 ReactDOM.render(
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
                 <App/>
         </Provider>

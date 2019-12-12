@@ -61,7 +61,7 @@ const onButtonClick = () => {
 function App() {
     const classes = useStyles();
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme} >
             <Container maxWidth="false" className={classes.root}>
 
 {/*                <MainMenu color = 'textPrimary' variant="body2" />*/}

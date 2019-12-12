@@ -17,10 +17,12 @@ const TableList = (props) => {
         props.getTableListSC();
 
     const getColumnsInfo = () => {
+        debugger
         return props.columns;
     };
 
     const getTablesData = () => {
+        debugger
         return props.dbTables;
     };
 
@@ -28,7 +30,7 @@ const TableList = (props) => {
         return 'Список таблиц Базы Данных';
     };
 
-
+debugger
     return (
         <div>
             {/*

@@ -36,7 +36,7 @@ const MainMenu = (props) => {
                 Система
             </Link>
             <Link href="/TableList" {...props} >
-                База
+                БазаTableList
             </Link>
             <Link href="#" onClick={preventDefault} {...props} >
                 Документы
